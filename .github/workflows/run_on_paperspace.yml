@@ -14,9 +14,9 @@ jobs:
           -H "X-Api-Key: ${{ secrets.PAPERSPACE_API_KEY }}" \
           -H "Content-Type: application/json" \
           -d '{
-            "project": "YOUR_PROJECT_ID",
+            "project": "pauavo5rvcp",
             "machineType": "P5000",
             "container": "paperspace/gradient-base:latest",
-            "workspaceUrl": "https://github.com/YOUR_USERNAME/paperspace-pipeline-test.git",
+            "workspaceUrl": "https://github.com/yallabalaji/paperspace-pipeline-test.git",
             "command": "pip install -r requirements.txt && jupyter nbconvert --to notebook --execute notebooks/00_test_environment.ipynb"
           }'
