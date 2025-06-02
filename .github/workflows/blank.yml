@@ -1,0 +1,22 @@
+name: Test Paperspace Spin-up
+
+on:
+  workflow_dispatch:  # Enables the Run button in GitHub UI
+
+jobs:
+  run-remote-notebook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Notebook on Paperspace
+        run: |
+          curl -X POST https://api.paperspace.io/v1/notebooks \
+          -H "X-Api-Key: ${{ secrets.PAPERSPACE_API_KEY }}" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "project": "pauavo5rvcp",
+            "machineType": "P5000",
+            "container": "paperspace/gradient-base:latest",
+            "workspaceUrl": "https://github.com/yallabalaji/paperspace-pipeline-test.git",
+            "command": "pip install -r requirements.txt && jupyter nbconvert --to notebook --execute notebooks/00_test_environment.ipynb"
+          }'
